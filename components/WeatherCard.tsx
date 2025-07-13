@@ -1,4 +1,5 @@
-import React from "react";
+import { Card, CardContent } from '@/components/ui/card';
+import { Cloud, Sun, CloudRain, CloudSnow, Zap, Wind, Thermometer, Droplets, Eye, Gauge } from 'lucide-react';
 
 interface WeatherData {
   name: string;
@@ -24,39 +25,98 @@ interface WeatherCardProps {
   loading: boolean;
 }
 
+const getWeatherIcon = (weatherMain: string) => {
+  switch (weatherMain.toLowerCase()) {
+    case 'clear':
+      return <Sun className="w-16 h-16 text-sunny animate-pulse" />;
+    case 'clouds':
+      return <Cloud className="w-16 h-16" />;
+    case 'rain':
+    case 'drizzle':
+      return <CloudRain className="w-16 h-16 text-rainy" />;
+    case 'snow':
+      return <CloudSnow className="w-16 h-16 text-snowy" />;
+    case 'thunderstorm':
+      return <Zap className="w-16 h-16 text-stormy animate-pulse" />;
+    default:
+      return <Cloud className="w-16 h-16 text-cloudy" />;
+  }
+};
+
 export const WeatherCard = ({ weatherData, loading }: WeatherCardProps) => {
   if (loading) {
     return (
-      <div className="p-6 border rounded shadow animate-pulse bg-white/20 text-center">
-        Loading...
-      </div>
+      <Card className="weather-card max-w-md mx-auto">
+        <CardContent className="p-8">
+          <div className="animate-pulse">
+            <div className="h-8 bg-muted rounded mb-4"></div>
+            <div className="h-16 bg-muted rounded mb-4"></div>
+            <div className="h-4 bg-muted rounded mb-2"></div>
+            <div className="h-4 bg-muted rounded w-3/4"></div>
+          </div>
+        </CardContent>
+      </Card>
     );
   }
 
   if (!weatherData) {
-    return (
-      <div className="p-6 border rounded shadow bg-white/20 text-center">
-        Enter your API key and city to see weather data.
-      </div>
-    );
+    return;
   }
 
   const temp = Math.round(weatherData.main.temp);
   const feelsLike = Math.round(weatherData.main.feels_like);
+  const weatherMain = weatherData.weather[0].main;
   const description = weatherData.weather[0].description;
 
   return (
-    <div className="p-6 border rounded shadow bg-white/20 max-w-md mx-auto mt-4">
-      <h2 className="text-xl font-bold mb-2">{weatherData.name}</h2>
-      <div className="text-4xl font-bold mb-2">{temp}°C</div>
-      <div className="capitalize mb-2">{description}</div>
-      <div className="text-sm text-gray-700 mb-2">Feels like {feelsLike}°C</div>
-      <div className="flex flex-wrap gap-4 justify-center mt-4">
-        <div>Humidity: {weatherData.main.humidity}%</div>
-        <div>Wind: {weatherData.wind.speed} m/s</div>
-        <div>Pressure: {weatherData.main.pressure} hPa</div>
-        <div>Visibility: {Math.round(weatherData.visibility / 1000)} km</div>
-      </div>
-    </div>
+    <Card className="weather-card max-w-md mx-auto animate-fade-in">
+      <CardContent className="p-8">
+        {/* Location and main weather */}
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold mb-2">{weatherData.name}</h2>
+          <div className="flex items-center justify-center mb-4">
+            {getWeatherIcon(weatherMain)}
+          </div>
+          <div className="text-2xl font-bold mb-2">{temp}°C</div>
+          <p className="text-lg text-muted-foreground capitalize">{description}</p>
+          <p className="text-sm text-muted-foreground">Feels like {feelsLike}°C</p>
+        </div>
+
+        {/* Weather details grid */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex items-center space-x-2">
+            <Droplets className="w-5 h-5 text-rainy" />
+            <div>
+              <p className="text-sm text-muted-foreground">Humidity</p>
+              <p className="font-semibold">{weatherData.main.humidity}%</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Wind className="w-5 h-5 text-cloudy" />
+            <div>
+              <p className="text-sm text-muted-foreground">Wind Speed</p>
+              <p className="font-semibold">{weatherData.wind.speed} m/s</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Gauge className="w-5 h-5 text-stormy" />
+            <div>
+              <p className="text-sm text-muted-foreground">Pressure</p>
+              <p className="font-semibold">{weatherData.main.pressure} hPa</p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Eye className="w-5 h-5 text-snowy" />
+            <div>
+              <p className="text-sm text-muted-foreground">Visibility</p>
+              <p className="font-semibold">{Math.round(weatherData.visibility / 1000)} km</p>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 };

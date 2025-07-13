@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { WeatherCard } from "./WeatherCard";
 import { useToast } from "./hooks/use-toast";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Key } from 'lucide-react';
 
 export default function WeatherApp() {
   const [city, setCity] = useState("Manila");
@@ -51,32 +55,42 @@ export default function WeatherApp() {
 };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 dark:from-gray-900 dark:to-gray-800 transition-all duration-700">
-      <div className="w-full max-w-md mt-12 p-6 bg-white/80 dark:bg-gray-900/80 rounded-xl shadow-lg">
-        <h1 className="text-2xl font-bold mb-4 text-center">Weather App</h1>
-        <div className="flex flex-col md:flex-row gap-2 mb-4">
-          <input
-            className="border p-2 rounded flex-1"
-            placeholder="API Key"
+    <div className="weather-card max-w-md mx-auto mb-8">
+      <div className="p-6 space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="api-key" className="flex items-center gap-2">
+            <Key className="w-4 h-4" />
+            OpenWeatherMap API Key
+          </Label>
+          <Input
+            id="api-key"
+            type="password"
+            placeholder="Enter your API key"
             value={apiKey}
             onChange={e => setApiKey(e.target.value)}
           />
-          <input
-            className="border p-2 rounded flex-1"
-            placeholder="City"
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="city">City</Label>
+          <Input
+            id="city"
+            placeholder="Enter city name"
             value={city}
             onChange={e => setCity(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && fetchWeather()}
           />
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        </div>
+        <div className="flex gap-2">
+          <Button
             onClick={fetchWeather}
             disabled={loading}
+            className="flex-1"
           >
-            {loading ? "Loading..." : "Get Weather"}
-          </button>
+            {loading ? 'Loading...' : 'Get Weather'}
+          </Button>
         </div>
-        <WeatherCard weatherData={weather} loading={loading} />
       </div>
+      <WeatherCard weatherData={weather} loading={loading} />
     </div>
   );
 }
