@@ -2,36 +2,124 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 220 20% 14%;
-  --foreground: 210 40% 98%;
-  --primary: 200 98% 39%;
-  --primary-foreground: 220 20% 14%;
-  --secondary: 220 20% 25%;
-  --secondary-foreground: 210 40% 98%;
-  --accent: 200 98% 39%;
-  --accent-foreground: 220 20% 14%;
-  --destructive: 0 62% 50%;
-  --destructive-foreground: 210 40% 98%;
-  --muted: 220 20% 20%;
-  --muted-foreground: 215 20% 65%;
-  --ring: 200 98% 39%;
-  --input: 220 20% 25%;
-  --border: 220 20% 25%;
-  --radius: 1rem;
-}
+/* Weather-themed design system with beautiful animations */
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Base weather colors */
+    --background: 220 20% 14%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 24% 18%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 24% 18%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 200 98% 39%;
+    --primary-foreground: 220 20% 14%;
+
+    --secondary: 220 20% 25%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 20% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 200 98% 39%;
+    --accent-foreground: 220 20% 14%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 25%;
+    --input: 220 20% 25%;
+    --ring: 200 98% 39%;
+
+    --radius: 1rem;
+
+    /* Weather-specific colors - Night mode */
+    --sunny: 45 98% 55%;
+    --sunny-secondary: 40 95% 65%;
+    --cloudy: 210 15% 70%;
+    --cloudy-dark: 220 20% 50%;
+    --rainy: 200 98% 39%;
+    --rainy-dark: 200 85% 25%;
+    --snowy: 210 40% 95%;
+    --stormy: 260 30% 35%;
+    --stormy-dark: 260 40% 20%;
+
+    /* Day mode colors */
+    --sunny-day: 45 98% 65%;
+    --sunny-day-secondary: 200 100% 80%;
+    --cloudy-day: 210 30% 85%;
+    --cloudy-day-dark: 200 40% 75%;
+    --rainy-day: 210 60% 65%;
+    --rainy-day-dark: 220 50% 45%;
+    --snowy-day: 210 30% 90%;
+    --stormy-day: 260 20% 60%;
+    --stormy-day-dark: 260 30% 40%;
+
+    /* Weather gradients - Night mode */
+    --gradient-sunny: linear-gradient(135deg, hsl(var(--sunny)), hsl(var(--sunny-secondary)));
+    --gradient-cloudy: linear-gradient(135deg, hsl(var(--cloudy)), hsl(var(--cloudy-dark)));
+    --gradient-rainy: linear-gradient(135deg, hsl(var(--rainy-dark)), hsl(var(--rainy)));
+    --gradient-snowy: linear-gradient(135deg, hsl(var(--snowy)), hsl(var(--cloudy)));
+    --gradient-stormy: linear-gradient(135deg, hsl(var(--stormy-dark)), hsl(var(--stormy)));
+
+    /* Day mode gradients */
+    --gradient-sunny-day: linear-gradient(135deg, hsl(var(--sunny-day)), hsl(var(--sunny-day-secondary)));
+    --gradient-cloudy-day: linear-gradient(135deg, hsl(var(--cloudy-day)), hsl(var(--cloudy-day-dark)));
+    --gradient-rainy-day: linear-gradient(135deg, hsl(var(--rainy-day-dark)), hsl(var(--rainy-day)));
+    --gradient-snowy-day: linear-gradient(135deg, hsl(var(--snowy-day)), hsl(var(--cloudy-day)));
+    --gradient-stormy-day: linear-gradient(135deg, hsl(var(--stormy-day-dark)), hsl(var(--stormy-day)));
+
+    /* Animation variables */
+    --rain-speed: 1s;
+    --cloud-speed: 20s;
+    --snow-speed: 3s;
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Weather animation keyframes */
+@keyframes rainDrop {
+  0% {
+    transform: translateY(-100vh) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cloudMove {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+@keyframes snowFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes lightning {
+  0%, 90%, 100% {
+    opacity: 0;
+  }
+  5%, 10% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
@@ -45,9 +133,92 @@ body {
   }
 }
 
-.weather-card {
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-all duration-700;
+  }
+}
+
+@layer components {
+  .rain-drop {
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1), hsl(var(--rainy)) 40%, rgba(255,255,255,0.8) 60%, transparent);
+    width: 3px;
+    height: 25px;
+    animation: rainDrop var(--rain-speed) linear infinite;
+    opacity: 0.8;
+    box-shadow: 0 0 6px rgba(255,255,255,0.3);
+  }
+  
+  .cloud {
+    position: absolute;
+    background: hsl(var(--cloudy));
+    border-radius: 100px;
+    opacity: 0.7;
+    animation: cloudMove var(--cloud-speed) linear infinite;
+    filter: blur(1px);
+  }
+  
+  .cloud::before,
+  .cloud::after {
+    content: '';
+    position: absolute;
+    background: hsl(var(--cloudy));
+    border-radius: 100px;
+  }
+  
+  .cloud::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+    filter: blur(1px);
+  }
+  
+  .cloud::after {
+    width: 60px;
+    height: 60px;
+    top: -35px;
+    right: 15px;
+    filter: blur(1px);
+  }
+  
+  .snow-flake {
+    position: absolute;
+    background: hsl(var(--snowy));
+    border-radius: 50%;
+    animation: snowFall var(--snow-speed) linear infinite;
+  }
+  
+  .lightning-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsl(var(--snowy));
+    opacity: 0;
+    pointer-events: none;
+    animation: lightning 2s infinite;
+  }
+  
+  .weather-card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
 }

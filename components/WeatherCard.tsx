@@ -30,7 +30,7 @@ const getWeatherIcon = (weatherMain: string) => {
     case 'clear':
       return <Sun className="w-16 h-16 text-sunny animate-pulse" />;
     case 'clouds':
-      return <Cloud className="w-16 h-16" />;
+      return <Cloud className="w-16 h-16 text-cloudy" />;
     case 'rain':
     case 'drizzle':
       return <CloudRain className="w-16 h-16 text-rainy" />;

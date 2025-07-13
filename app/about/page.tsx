@@ -1,81 +1,55 @@
 import Image from "next/image";
+import { Code, Cloud, Smartphone } from "lucide-react"; // Example Lucide icons
+
 export default function About() {
   return (
     <div>
-   
-      <section className="overflow-hidden bg-white py-8 sm:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="lg:pr-8 lg:pt-4">
-              <div className="lg:max-w-lg">
-                <h2 className="text-base font-semibold leading-7 text-indigo-600">About Page</h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">This page has some errors</p>
-                <p className="mt-6 text-lg leading-8 text-gray-600">Not only is this page throwing a 404 error we need to resolve but there's some code erros on this page as well.
-                </p>
-                <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                  <div className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                        fill="currentColor" aria-hidden="true" className="absolute left-1 top-1 h-5 w-5 text-indigo-600">
-                        <path
-                          d="M3.196 12.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 12.87z">
-                        </path>
-                        <path
-                          d="M3.196 8.87l-.825.483a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.758 0l7.25-4.25a.75.75 0 000-1.294l-.825-.484-5.666 3.322a2.25 2.25 0 01-2.276 0L3.196 8.87z">
-                        </path>
-                        <path
-                          d="M10.38 1.103a.75.75 0 00-.76 0l-7.25 4.25a.75.75 0 000 1.294l7.25 4.25a.75.75 0 00.76 0l7.25-4.25a.75.75 0 000-1.294l-7.25-4.25z">
-                        </path>
-                      </svg>Template driven
-                    </dt>
-                    <dd className="inline">Inspired by Sendgrid, Mailchimp, and Postmark, we allow you to create and apply
-                      templated content to your media.
-                    </dd>
-                  </div>
-                  <div className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
-                        className="absolute left-1 top-1 h-5 w-5 text-indigo-600">
-                        <path fillRule="evenodd"
-                          d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z"
-                          clipRule="evenodd"></path>
-                      </svg>
-                      Simple, REST
-                    </dt>
-                    <dd className="inline">A simple REST API that allows you to create, generate, and manage your content.</dd>
-                  </div>
-                  <div className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                        fill="currentColor" aria-hidden="true" className="absolute left-1 top-1 h-5 w-5 text-indigo-600">
-                        <path fillRule="evenodd"
-                          d="M14.5 10a4.5 4.5 0 004.284-5.882c-.105-.324-.51-.391-.752-.15L15.34 6.66a.454.454 0 01-.493.11 3.01 3.01 0 01-1.618-1.616.455.455 0 01.11-.494l2.694-2.692c.24-.241.174-.647-.15-.752a4.5 4.5 0 00-5.873 4.575c.055.873-.128 1.808-.8 2.368l-7.23 6.024a2.724 2.724 0 103.837 3.837l6.024-7.23c.56-.672 1.495-.855 2.368-.8.096.007.193.01.291.01zM5 16a1 1 0 11-2 0 1 1 0 012 0z"
-                          clipRule="evenodd"></path>
-                        <path
-                          d="M14.5 11.5c.173 0 .345-.007.514-.022l3.754 3.754a2.5 2.5 0 01-3.536 3.536l-4.41-4.41 2.172-2.607c.052-.063.147-.138.342-.196.202-.06.469-.087.777-.067.128.008.257.012.387.012zM6 4.586l2.33 2.33a.452.452 0 01-.08.09L6.8 8.214 4.586 6H3.309a.5.5 0 01-.447-.276l-1.7-3.402a.5.5 0 01.093-.577l.49-.49a.5.5 0 01.577-.094l3.402 1.7A.5.5 0 016 3.31v1.277z">
-                        </path>
-                      </svg>Developer friendly </dt>
-                    <dd className="inline">Documented and easy to use, we make it easy to integrate with your existing workflow.
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-              <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a href="/thank-you"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-800 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
-                      Thank You
-                  </a>
-              </div> 
+      <section className="sm:mt-6 lg:mt-8 mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="my-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28 flex gap-3 flex-col lg:flex-row">
+          <div className="sm:text-center lg:text-left flex-1">
+            <h1 className="text-4xl tracking-tight font-extrabold text-gray-800 sm:text-5xl md:text-6xl">
+              <span className="block xl:inline text-gray-500">About This Project</span>
+              <span className="block text-indigo-600 xl:inline">Weather App Demo</span>
+            </h1>
+            <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              This page demonstrates a modern weather app built with Next.js, Tailwind CSS, and OpenWeatherMap API. 
+              It features beautiful UI, live weather data, and a clean, responsive layout.
+            </p>
+            <ul className="mt-6 space-y-2 text-gray-700 text-base list-none pl-0">
+              <li className="flex items-center gap-2 text-gray-500">
+                <Code className="w-5 h-5 text-indigo-500" />
+                Template-driven and developer friendly
+              </li>
+              <li className="flex items-center gap-2 text-gray-500">
+                <Cloud className="w-5 h-5 text-blue-400" />
+                Simple REST API integration
+              </li>
+              <li className="flex items-center gap-2 text-gray-500">
+                <Smartphone className="w-5 h-5 text-green-500" />
+                Responsive and accessible design
+              </li>
+            </ul>
+            <div className="mt-6">
+              <a
+                href="/thank-you"
+                className="inline-block px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-800 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
+              >
+                Thank You
+              </a>
             </div>
-            <Image src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxjb21wdXRlcnxlbnwwfDB8fHwxNjkxODE2NjY3fDA&ixlib=rb-4.0.3&q=80&w=1080"
-            className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0"
-            alt="Picture"
-            width={2432} height={1442}
-            priority
+          </div>
+          <div className="flex-1 flex items-center justify-center my-4">
+            <Image
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxjb21wdXRlcnxlbnwwfDB8fHwxNjkxODE2NjY3fDA&ixlib=rb-4.0.3&q=80&w=1080"
+              className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
+              alt="About Weather App"
+              width={500}
+              height={500}
+              priority
             />
-        
           </div>
         </div>
       </section>
-
     </div>
   );
 }

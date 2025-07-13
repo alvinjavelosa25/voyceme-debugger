@@ -1,4 +1,4 @@
-import WeatherApp from "@/components/WeatherApp";
+import { WeatherApp } from "@/components/WeatherApp";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +20,7 @@ export default function Home() {
               Now that you've got this page working click the about the bash link to learn more
             </p>
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="max-w-7xl mx-auto">
+                <div className="max-w-7xl">
                     <div className="relative group cursor-pointer">
                         <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
                         </div>
