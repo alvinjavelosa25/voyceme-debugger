@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { WeatherCard } from "./WeatherCard";
 
 export default function WeatherApp() {
   const [city, setCity] = useState("Manila");
@@ -35,11 +36,7 @@ export default function WeatherApp() {
         {loading ? "Loading..." : "Get Weather"}
       </button>
       {weather && weather.main && (
-        <div className="mt-4">
-          <div className="font-bold">{weather.name}</div>
-          <div>Temp: {weather.main.temp}°C</div>
-          <div>Condition: {weather.weather[0].description}</div>
-        </div>
+        <WeatherCard weatherData={weather} loading={loading} />
       )}
     </div>
   );
