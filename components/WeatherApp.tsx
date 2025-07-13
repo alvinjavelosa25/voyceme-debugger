@@ -7,7 +7,7 @@ import { useToast } from './hooks/use-toast';
 import { WeatherCard } from './WeatherCard';
 import { WeatherAnimations } from './WeatherAnimations';
 import { ThemeToggle } from './ThemeToggle';
-import { MapPin, Key } from 'lucide-react';
+import { Key } from 'lucide-react';
 
 interface WeatherData {
   name: string;
@@ -154,7 +154,7 @@ export const WeatherApp = () => {
                   type="password"
                   placeholder="Enter your API key"
                   value={apiKey}
-                  onChange={(e:any) => setApiKey(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setApiKey(e.target.value)}
                 />
               </div>
               <div className="space-y-2">
@@ -163,8 +163,8 @@ export const WeatherApp = () => {
                   id="city"
                   placeholder="Enter city name"
                   value={city}
-                  onChange={(e:any) => setCity(e.target.value)}
-                  onKeyDown={(e:any) => e.key === 'Enter' && fetchWeather()}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCity(e.target.value)}
+                  onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && fetchWeather()}
                 />
               </div>
               <div className="flex gap-2">

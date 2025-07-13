@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Cloud, Sun, CloudRain, CloudSnow, Zap, Wind, Thermometer, Droplets, Eye, Gauge } from 'lucide-react';
+import { Cloud, Sun, CloudRain, CloudSnow, Zap, Wind, Droplets, Eye, Gauge } from 'lucide-react';
 
 interface WeatherData {
   name: string;
